@@ -1,12 +1,14 @@
 Package: nflversepersnap
-Title: What the Package Does (One Line, Title Case)
+Title: Collates NFL Receiving Statistics on a Per Snap basis using the #nflverse package
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
+    person("Tim", "Albiston", , "first.last@example.com", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Description: Collates NFL Receiving Statistics on a Per Snap basis using the #nflverse package. ShinyApp then plots these - filterable by player, season, years of experience in league, and snaps played. Also produces a reactable table with the same statistics.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Imports: 
+    tidyverse,
+    nflverse
