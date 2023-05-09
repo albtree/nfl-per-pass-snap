@@ -50,5 +50,9 @@ routes <- df3 %>%
                                TRUE ~ full_name)) %>%
   mutate(name_season = paste(full_name, season)) %>%
   left_join(rosters2, by = c('offense_players' = 'gsis_id', 'season' = 'season'), na_matches = "never") 
+  
+routes_2016_2021 <- read.csv("/read_data/routes_2016_2021.csv")
 
-write.csv(routes, file = "rec_per_snap_data.csv", row.names = F)
+routes_all <- bind_rows(routes, routes_2016_2021)
+
+write.csv(routes_all, file = "rec_per_snap_data.csv", row.names = F)
