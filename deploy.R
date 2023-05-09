@@ -6,6 +6,7 @@ library(nflreadr)
 library(nflplotR)
 library(reactable)
 library(hrbrthemes)
+library(rsconnect)
 
 # Authenticate
 setAccountInfo(name = Sys.getenv("SHINY_ACC_NAME"),
