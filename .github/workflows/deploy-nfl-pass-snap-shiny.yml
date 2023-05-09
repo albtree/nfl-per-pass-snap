@@ -1,12 +1,7 @@
-name: Run on push master, main
-
-# Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main, master ]
-
-  # Allows you to run this workflow manually from the Actions tab
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '15 19 * 1,9,10,11,12 1,2,5,6'
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
