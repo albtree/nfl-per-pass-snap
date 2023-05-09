@@ -1,7 +1,7 @@
 library(tidyverse)
 library(nflverse)
 
-
+## Once NFL season has started, change 2022 to 2023
 participation <- load_participation(2022) %>%
   mutate(possession_team = case_when(possession_team == "OAK" ~ "LV",
                         TRUE ~ possession_team))
@@ -50,9 +50,10 @@ routes <- df3 %>%
                                TRUE ~ full_name)) %>%
   mutate(name_season = paste(full_name, season)) %>%
   left_join(rosters2, by = c('offense_players' = 'gsis_id', 'season' = 'season'), na_matches = "never") 
-  
-routes_2016_2021 <- read.csv("read_data/routes_2016_2021.csv")
 
+## Once NFL season has started, change this to 2016_2022 and to upload a new csv of 2016-2022 to read in as the base csv
+routes_2016_2021 <- read.csv("read_data/routes_2016_2021.csv")
+## change routes_2016_2021 to 2016_2022
 routes_all <- bind_rows(routes, routes_2016_2021)
 
 write.csv(routes_all, file = "rec_per_snap_data.csv", row.names = F)
