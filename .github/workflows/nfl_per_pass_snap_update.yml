@@ -17,7 +17,7 @@ jobs:
         with:
           use-public-rspm: true
       - uses: r-lib/actions/setup-r-dependencies@v2
-      - name: Update Disposals
+      - name: Update-NFL-Snaps
         run: Rscript -e 'source("R/snaps_nflverse.R")'
       - name: Commit files
         run: |
