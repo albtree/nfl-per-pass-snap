@@ -1,8 +1,5 @@
-library(stringr)
-library(nflverse)
-library(googledrive)
-library(ggrepel)
 library(tidyverse)
+library(nflverse)
 
 
 participation <- load_participation(2016:2022) %>%
@@ -21,7 +18,7 @@ rosters2 <- rosters %>%
   distinct(gsis_id, team, season, .keep_all = TRUE)
 
 pbp <- load_pbp(2016:2022)
-## Breakdown is here, but why?
+
 df3 <- pbp %>%
   left_join(df2, by = c('old_game_id' = 'old_game_id', 'play_id' = 'play_id'), na_matches = "never") %>%
   filter(play_type == "pass",sack == 0, week <= 18) %>%
@@ -54,48 +51,4 @@ routes <- df3 %>%
   mutate(name_season = paste(full_name, season)) %>%
   left_join(rosters2, by = c('offense_players' = 'gsis_id', 'season' = 'season'), na_matches = "never") 
 
-write.csv(routes, "C://Users/talbi/Documents/R/routes_shiny/routes.csv", row.names = F)
-drive_upload("routes.csv", name = "routes.csv", type = "spreadsheet", overwrite = TRUE)
-1
-
-routes <- read.csv("routes.csv")
-
-
-#routes %>%
-  filter(targets_total >= 90) %>%
-  ggplot(aes(x = targets_per_pass_snap, y = yards_per_pass_snap)) +
-  geom_nfl_logos(aes(team_abbr = team), width = 0.035, alpha = 0.7) +
-  geom_label_repel(aes(label = full_name), size = 3, max.overlaps = 15) +
-  labs(title = "Targets & Yards per Pass Snap - Mike Evans, yikes",
-       subtitle = "Minimum 90 targets",
-       x = "Targets per Pass Snap",
-       y = "Receiving Yards per Pass Snap",
-       caption = "Data = nflverse. Author = @TAlbTree")+
-  theme_ipsum_rc()+
-  theme(plot.title = element_text(size = 10),
-        plot.subtitle = element_text(size = 10),
-        axis.text = element_text(size = 8))
-ggsave("tprr_vs_yprr.png", bg = "#ffffff")
-
-routes %>%
-  filter(years_exp == 0, season > 2019, pass_snaps >= 150) %>%
-  ggplot(aes(x = targets_per_pass_snap, y = yards_per_pass_snap)) +
-  geom_nfl_logos(aes(team_abbr = team), width = 0.035, alpha = 0.7) +
-  geom_label_repel(aes(label = full_name), size = 3, max.overlaps = 15) +
-  labs(title = "Targets & Yards per Pass Snap - 2020 and 2021 Rookies",
-       subtitle = "Minimum 150 pass snaps",
-       x = "Targets per Pass Snap",
-       y = "Receiving Yards per Pass Snap",
-       caption = "Data = nflverse. Author = @TAlbTree")+
-  theme_ipsum_rc()+
-  theme(plot.title = element_text(size = 10),
-        plot.subtitle = element_text(size = 10),
-        axis.text = element_text(size = 8))
-ggsave("tprr_vs_yprr_2021rookies.png", bg = "#ffffff")
-
-unique(LV18$old_game_id)
-unique(LV18_part$old_game_id)
-
-unique(LV18_rosters$gsis_id)
-unique(LV18_part$offense_players)
-
+write.csv(routes, file = "rec_per_snap_data.csv", row.names = F)
