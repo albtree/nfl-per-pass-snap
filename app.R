@@ -50,8 +50,8 @@ filtered <- reactive({if (is.null(input$full_name)) {return(NULL)
   
 output$ypps_plot <- renderPlot({if (is.null(filtered())) {return()}
   ggplot(filtered(), aes(x = targets_per_pass_snap, y = yards_per_pass_snap)) +
-    geom_nfl_logos(aes(team_abbr = posteam), width = 0.06, alpha = 0.65, position = "jitter") +
-    geom_label_repel(aes(label = name_season, colour = position), max.overlaps = 15, size = 3) +
+    geom_nfl_logos(aes(team_abbr = posteam), width = 0.08, alpha = 0.75, position = "jitter") +
+    geom_label_repel(aes(label = name_season, colour = position), max.overlaps = 15, size = 3, alpha = 0.8) +
     labs(title = "Targets & Yards per Pass Snap",
          x = "Targets per Pass Snap",
          y = "Receiving Yards per Pass Snap",
@@ -64,8 +64,8 @@ output$ypps_plot <- renderPlot({if (is.null(filtered())) {return()}
 
 output$epapps_plot <- renderPlot({if (is.null(filtered())) {return()}
   ggplot(filtered(), aes(x = targets_per_pass_snap, y = rec_epa_per_pass_snap)) +
-    geom_nfl_logos(aes(team_abbr = posteam), width = 0.06, alpha = 0.65, position = "jitter") +
-    geom_label_repel(aes(label = name_season, color = position), max.overlaps = 15, size = 3) +
+    geom_nfl_logos(aes(team_abbr = posteam), width = 0.08, alpha = 0.75, position = "jitter") +
+    geom_label_repel(aes(label = name_season, color = position), max.overlaps = 15, size = 3. alpha = 0.8) +
 
     labs(title = "Targets & Receiving EPA per Pass Snap",
          x = "Targets per Pass Snap",
