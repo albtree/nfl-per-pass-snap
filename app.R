@@ -17,8 +17,8 @@ ui <- fluidPage(
       uiOutput("full_nameOutput"),
                  sliderInput("years_exp", "Year in League", min = 1, max = 20,
                              value = c(1, 20)),
-                 sliderInput("season", "Season", min = 2016, max = 2022,
-                             value = c(2022, 2022)),
+                 sliderInput("season", "Season", min = 2016, max = 2022, #change to 2023
+                             value = c(2022, 2022)), #change to 2023
                  sliderInput("pass_snaps", "Pass Snaps", min = 0, max = 700,
                              value = c(150, 700))),
     mainPanel(plotOutput("ypps_plot"),
@@ -31,7 +31,7 @@ ui <- fluidPage(
 server <- function(input, output, session){output$full_nameOutput <- renderUI({
   sliderInput("pass_snaps", "Pass Snaps", min = 0, max = 700, value = c(150, 700))
   sliderInput("years_exp", "Year in League", min = 1, max = 20, value = c(1, 20))
-  sliderInput("season", "Season", min = 2016, max = 2022, value = c(2022, 2022))
+  sliderInput("season", "Season", min = 2016, max = 2022, value = c(2022, 2022)) #change to 2023
   selectInput("full_name", "Player",
               sort(unique(bcl$full_name)), multiple = TRUE,
               selected = "Keenan Allen")
@@ -50,12 +50,12 @@ filtered <- reactive({if (is.null(input$full_name)) {return(NULL)
   
 output$ypps_plot <- renderPlot({if (is.null(filtered())) {return()}
   ggplot(filtered(), aes(x = targets_per_pass_snap, y = yards_per_pass_snap)) +
-    geom_nfl_logos(aes(team_abbr = posteam), width = 0.08, alpha = 0.75, position = "jitter") +
+    geom_nfl_logos(aes(team_abbr = posteam), width = 0.08, alpha = 0.75) +
     geom_label_repel(aes(label = name_season, colour = position), max.overlaps = 15, size = 3, alpha = 0.8) +
     labs(title = "Targets & Yards per Pass Snap",
          x = "Targets per Pass Snap",
          y = "Receiving Yards per Pass Snap",
-         caption = "Data = nflverse. Author = @TAlbTree")+xlim(0.1,0.35)+ylim(0.5,3.5)+
+         caption = "Data = nflverse. Author = @TAlbTree Link: https://albtree.shinyapps.io/routes_shiny/")+xlim(0.1,0.35)+ylim(0.5,3.5)+
     theme_ipsum_rc()+
     theme(plot.title = element_text(size = 12),
           plot.subtitle = element_text(size = 12),
@@ -64,7 +64,7 @@ output$ypps_plot <- renderPlot({if (is.null(filtered())) {return()}
 
 output$epapps_plot <- renderPlot({if (is.null(filtered())) {return()}
   ggplot(filtered(), aes(x = targets_per_pass_snap, y = rec_epa_per_pass_snap)) +
-    geom_nfl_logos(aes(team_abbr = posteam), width = 0.08, alpha = 0.75, position = "jitter") +
+    geom_nfl_logos(aes(team_abbr = posteam), width = 0.08, alpha = 0.75) +
     geom_label_repel(aes(label = name_season, color = position), max.overlaps = 15, size = 3, alpha = 0.8) +
 
     labs(title = "Targets & Receiving EPA per Pass Snap",
