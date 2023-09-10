@@ -17,8 +17,8 @@ ui <- fluidPage(
       uiOutput("full_nameOutput"),
                  sliderInput("years_exp", "Year in League", min = 1, max = 20,
                              value = c(1, 20)),
-                 sliderInput("season", "Season", min = 2016, max = 2022, #change to 2023
-                             value = c(2022, 2022)), #change to 2023
+                 sliderInput("season", "Season", min = 2016, max = 2023, #change to 2023
+                             value = c(2023, 2023)), #change to 2023
                  sliderInput("pass_snaps", "Pass Snaps", min = 0, max = 700,
                              value = c(150, 700))),
     mainPanel(plotOutput("ypps_plot"),
@@ -31,7 +31,7 @@ ui <- fluidPage(
 server <- function(input, output, session){output$full_nameOutput <- renderUI({
   sliderInput("pass_snaps", "Pass Snaps", min = 0, max = 700, value = c(150, 700))
   sliderInput("years_exp", "Year in League", min = 1, max = 20, value = c(1, 20))
-  sliderInput("season", "Season", min = 2016, max = 2022, value = c(2022, 2022)) #change to 2023
+  sliderInput("season", "Season", min = 2016, max = 2023, value = c(2023, 2023)) #change to 2023
   selectInput("full_name", "Player",
               sort(unique(bcl$full_name)), multiple = TRUE,
               selected = "Keenan Allen")
