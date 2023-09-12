@@ -123,6 +123,14 @@ output$table <- renderReactable({reactable(reactable_df,
                                            filterable = TRUE, showPageSizeOptions = TRUE, minRows = 10)})
 }
 
+
+
+  observe({
+    invalidateLater(10000, session)
+    cat(".")
+  })
+
+
 shinyApp(ui = ui, server = server)
 
 #xlim(0, 0.4) +
