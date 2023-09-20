@@ -11,6 +11,4 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
     tidyverse,
-    nflverse
-Remotes:
-  nflverse/nflplotR
+    nflverse, nflplotR
