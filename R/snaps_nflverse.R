@@ -2,6 +2,8 @@ library(tidyverse)
 library(nflverse)
 
 ## Once NFL season has started, change 2022 to 2023
+nflreadr::clear_cache()
+
 participation <- load_participation(2023) %>%
   mutate(possession_team = case_when(possession_team == "OAK" ~ "LV",
                         TRUE ~ possession_team))
