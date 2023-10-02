@@ -55,7 +55,7 @@ output$ypps_plot <- renderPlot({if (is.null(filtered())) {return()}
     labs(title = "Targets & Yards per Pass Snap",
          x = "Targets per Pass Snap",
          y = "Receiving Yards per Pass Snap",
-         caption = "Data = nflverse. Author = @TAlbTree Link: https://albtree.shinyapps.io/routes_shiny/")+xlim(0,0.55)+ylim(0,5)+
+         caption = "Data = nflverse. Author = @TAlbTree Link: https://albtree.shinyapps.io/routes_shiny/")+xlim(0,0.55)+ylim(0,5.5)+
     theme_ipsum_rc()+
     theme(plot.title = element_text(size = 12),
           plot.subtitle = element_text(size = 12),
