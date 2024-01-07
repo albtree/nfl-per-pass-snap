@@ -70,7 +70,7 @@ output$epapps_plot <- renderPlot({if (is.null(filtered())) {return()}
     labs(title = "Targets & Receiving EPA per Pass Snap",
          x = "Targets per Pass Snap",
          y = "Receiving EPA per Pass Snap",
-         caption = "Data = nflverse. Author = @TAlbTree Link: https://albtree.shinyapps.io/routes_shiny/")+#xlim(0,0.55)+ylim(-0.8,0.8)+
+         caption = "Data = nflverse. Author = @TAlbTree Link: https://albtree.shinyapps.io/routes_shiny/")+xlim(0,0.45)+ylim(-1,1)+
     theme_ipsum_rc()+
     theme(plot.title = element_text(size = 12),
           plot.subtitle = element_text(size = 12),
